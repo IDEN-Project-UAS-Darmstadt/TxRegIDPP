@@ -1,0 +1,52 @@
+.dataframe {
+    overflow: auto;
+    position: relative;
+}
+
+.dataframe thead th {
+    position: -webkit-sticky;
+    position: sticky;  
+}
+
+.dataframe th { 
+    min-width: 15em;
+}
+
+
+.dataframe thead th:first-child {
+    left: 0;
+    z-index: 1;
+}
+
+.dataframe tbody tr th:only-of-type {
+    vertical-align: middle;
+}
+
+.dataframe tbody tr th {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    background: var(--pst-color-text-base);
+    vertical-align: top;
+}
+
+html[data-theme=dark] .bd-content .dataframe tbody tr th {
+    background: var(--pst-color-text-base);
+}
+
+html[data-theme=light] .bd-content .dataframe tbody tr th {
+    background: var(--pst-color-background);
+}
+
+html[data-theme=dark] .bd-content div.cell_output .text_html:has(hr:only-child) {
+background-color: var(--pst-color-background);
+}
+
+:root {
+    --pst-color-inline-code: var(--pst-color-text-base)!important;
+  }
+
+/* Hide the download buttons */
+.bd-header-article div.dropdown-download-buttons{
+    display: none;
+}

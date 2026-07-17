@@ -1,0 +1,18 @@
+title: TxReg I.D.P.P.
+author: IDEN project
+logo: logo_pipeline_export.svg
+only_build_toc_files: true
+execute:
+  execute_notebooks: 'off'
+latex:
+  latex_documents:
+    targetname: book.tex
+bibtex_bibfiles:
+  - references.bib
+html:
+#  favicon: "logo.png"
+  use_multitoc_numbering: false
+sphinx:
+  config:
+    html_show_copyright: false
+    use_download_button: false

@@ -1,0 +1,16 @@
+resources/input/*
+!resources/input/.gitkeep
+
+results/*
+!results/.gitkeep
+
+
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.snakemake
+/results

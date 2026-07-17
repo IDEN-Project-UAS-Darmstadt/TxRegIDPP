@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: mamba-org/setup-micromamba@v3
+        with:
+          environment-file: util/snakemake.yml
+          environment-name: ci
+          cache-environment: true
+          cache-downloads: true
+          generate-run-shell: true
+
+      - name: Lint
+        run: make just lint
+        shell: micromamba-shell {0}

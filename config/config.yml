@@ -1,0 +1,126 @@
+# Input directory, where the data files from the export reside
+input_data_dir: "resources/input"
+
+data:
+  common_translations:
+    - "männlich=male"
+    - "Male=male"
+    - "weiblich=female"
+    - "Female=female"
+    - "M=male"
+    - "F=female"
+    - "ja=yes"
+    - "Ja=yes"
+    - "Yes=yes"
+    - "nein=no"
+    - "Nein=no"
+    - "No=no"
+    - "o=0"
+    - "O=0"
+    - "gut=good"
+    - "Gut=good"
+    - "Good=good"
+    - "Mittelmäßig=average"
+    - "Annehmbar=acceptable"
+    - "Acceptable=acceptable"
+    - "mittel=acceptable"
+    - "Mittel=acceptable"
+    - "positiv=positive"
+    - "Positive=positive"
+    - "Negativ=negative"
+    - "Positiv=positive"
+    - "negativ=negative"
+    - "Negative=negative"
+    - "schlecht=poor"
+    - "Schlecht=poor"
+    - "Poor=poor"
+    - "lang=long"
+    - "kurz=short"
+    - "nicht bekannt=no evidence"
+    - "Nicht bekannt=no evidence"
+    - "No evidence=no evidence"
+    - "neg=negative"
+    - "pos=positive"
+    - "Not Tested=not tested"
+    - "nicht getestet=not tested"
+    - "NT=not tested"
+    - "Unknown=unknown"
+    - "unbekannt oder Follow-up nicht möglich=unknown"
+    - "unbekannt=unknown"
+    - "Unbekannt=unknown"
+    - "LKI=LKi"
+    - "RKI=RKi"
+    - "Lang=Long"
+    - "Kurz=Short"
+    - "Keine=no"
+    - "Pos=positive"
+    - "Neg=negative"
+  valid_ranges:
+    height:
+      max: 200
+      min: 75
+    weight:
+      max: 130
+      min: 40
+    age:
+      max: 98
+      min: 2
+  unit_conversions:
+    creatinine:
+      target: "mg/dl"
+      factors:
+        umol/l: 0.01131221719
+        mmol/l: 11.31221719
+    gas_mmhg:
+      target: "mmHg"
+      factors:
+         kPa: 7.50062
+         cmH2O: 0.73553888361413
+    enzymeactivity:
+      target: "U/l"
+      factors:
+         nmol/s/l: 0.06
+         umol/s/l: 60
+    bilirubin:
+      target: "umol/l"
+      factors:
+        mg/dl: 17.1039578558
+    calcium:
+      target: "mmol/l"
+      factors:
+        mg/dl: 0.24951344877
+        mg/l: 0.0024951344877
+    massconcentration_mg/l:
+      target: "mg/l"
+      factors:
+        mg/dl: 10
+    massconcentration_g/l:
+      target: "g/l"
+      factors:
+        mg/dl: 0.01
+        g/dl: 10
+    massconcentration_ug/l:
+      target: "ug/l"
+      factors:
+        ng/ml: 1
+    glucose:
+      target: "mmol/l"
+      factors:
+        mg/dl: 0.05550744909
+    hemoglobin:
+      target: "g/dl"
+      factors:
+        mmol/l: 1.6114
+        g/l: 0.1
+    urea:
+      target: "mmol/l"
+      factors:
+        mg/dl: 0.1665001665
+    creatinine_umol/l:
+      target: "umol/l"
+      factors:
+        mg/dl: 88.4
+    time_min:
+      target: "min"
+      factors:
+        h: 60

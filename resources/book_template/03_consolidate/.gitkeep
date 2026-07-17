@@ -1,0 +1,114 @@
+
+--boundary_.oOo._SFtLihdGCPmXWdWe2GhzEP8IqJZL+FDh
+Content-Length: 221639
+Content-Type: application/octet-stream
+X-File-MD5: f224eb5543115261c52391d6254d4160
+X-File-Mtime: 1694174810
+X-File-Path: /Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp/results/reports/data/1_spender_postmortem_monitoring.ipynb
+
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "2b134ce1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2023-09-08T12:06:40.127424Z",
+     "iopub.status.busy": "2023-09-08T12:06:40.126904Z",
+     "iopub.status.idle": "2023-09-08T12:06:40.192372Z",
+     "shell.execute_reply": "2023-09-08T12:06:40.191478Z"
+    },
+    "tags": [
+     "snakemake-job-properties"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "\n",
+    "######## snakemake preamble start (automatically inserted, do not edit) ########\n",
+    "import sys; sys.path.extend(['/home/finesim/mambaforge/envs/snakemake/lib/python3.11/site-packages', '/home/finesim/.cache/snakemake/snakemake/source-cache/runtime-cache/tmpq6k9pkp8/file/mnt/f/Nextcloud/Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp/workflow/notebooks', '/mnt/f/Nextcloud/Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp/workflow/notebooks']); import pickle; snakemake = pickle.loads(b'\\x80\\x04\\x95\\x1b\\t\\x00\\x00\\x00\\x00\\x00\\x00\\x8c\\x10snakemake.script\\x94\\x8c\\tSnakemake\\x94\\x93\\x94)\\x81\\x94}\\x94(\\x8c\\x05input\\x94\\x8c\\x0csnakemake.io\\x94\\x8c\\nInputFiles\\x94\\x93\\x94)\\x81\\x94(\\x8c9resources/input/element_spender_postmortem_monitoring.csv\\x94\\x8c\\xc5/home/finesim/.cache/snakemake/snakemake/source-cache/runtime-cache/tmpq6k9pkp8/file/mnt/f/Nextcloud/Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp/workflow/scripts/display_util.py\\x94\\x8c\\xbd/home/finesim/.cache/snakemake/snakemake/source-cache/runtime-cache/tmpq6k9pkp8/file/mnt/f/Nextcloud/Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp/workflow/scripts/util.py\\x94e}\\x94(\\x8c\\x06_names\\x94}\\x94(\\x8c\\x04data\\x94K\\x00N\\x86\\x94\\x8c\\x0cdisplay_util\\x94K\\x01N\\x86\\x94\\x8c\\x04util\\x94K\\x02N\\x86\\x94u\\x8c\\x12_allowed_overrides\\x94]\\x94(\\x8c\\x05index\\x94\\x8c\\x04sort\\x94eh\\x18\\x8c\\tfunctools\\x94\\x8c\\x07partial\\x94\\x93\\x94h\\x06\\x8c\\x19Namedlist._used_attribute\\x94\\x93\\x94\\x85\\x94R\\x94(h\\x1e)}\\x94\\x8c\\x05_name\\x94h\\x18sNt\\x94bh\\x19h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x19sNt\\x94bh\\x10h\\nh\\x12h\\x0bh\\x14h\\x0cub\\x8c\\x06output\\x94h\\x06\\x8c\\x0bOutputFiles\\x94\\x93\\x94)\\x81\\x94(\\x8c:results/data/intermediate_spender_postmortem_monitoring.pq\\x94\\x8c;results/data/intermediate_spender_postmortem_monitoring.yml\\x94e}\\x94(h\\x0e}\\x94(h\\x10K\\x00N\\x86\\x94\\x8c\\x05model\\x94K\\x01N\\x86\\x94uh\\x16]\\x94(h\\x18h\\x19eh\\x18h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x18sNt\\x94bh\\x19h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x19sNt\\x94bh\\x10h,h1h-ub\\x8c\\x06params\\x94h\\x06\\x8c\\x06Params\\x94\\x93\\x94)\\x81\\x94}\\x94(h\\x0e}\\x94h\\x16]\\x94(h\\x18h\\x19eh\\x18h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x18sNt\\x94bh\\x19h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x19sNt\\x94bub\\x8c\\twildcards\\x94h\\x06\\x8c\\tWildcards\\x94\\x93\\x94)\\x81\\x94\\x8c\\x1dspender_postmortem_monitoring\\x94a}\\x94(h\\x0e}\\x94\\x8c\\x08dataname\\x94K\\x00N\\x86\\x94sh\\x16]\\x94(h\\x18h\\x19eh\\x18h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x18sNt\\x94bh\\x19h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x19sNt\\x94bhRhOub\\x8c\\x07threads\\x94K\\x04\\x8c\\tresources\\x94h\\x06\\x8c\\tResources\\x94\\x93\\x94)\\x81\\x94(K\\x04K\\x01\\x8c\\x04/tmp\\x94e}\\x94(h\\x0e}\\x94(\\x8c\\x06_cores\\x94K\\x00N\\x86\\x94\\x8c\\x06_nodes\\x94K\\x01N\\x86\\x94\\x8c\\x06tmpdir\\x94K\\x02N\\x86\\x94uh\\x16]\\x94(h\\x18h\\x19eh\\x18h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x18sNt\\x94bh\\x19h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x19sNt\\x94bheK\\x04hgK\\x01hihbub\\x8c\\x03log\\x94h\\x06\\x8c\\x03Log\\x94\\x93\\x94)\\x81\\x94\\x8c:results/reports/data/1_spender_postmortem_monitoring.ipynb\\x94a}\\x94(h\\x0e}\\x94\\x8c\\x08notebook\\x94K\\x00N\\x86\\x94sh\\x16]\\x94(h\\x18h\\x19eh\\x18h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x18sNt\\x94bh\\x19h\\x1ch\\x1e\\x85\\x94R\\x94(h\\x1e)}\\x94h\"h\\x19sNt\\x94bh{hxub\\x8c\\x06config\\x94}\\x94(\\x8c\\x0einput_data_dir\\x94\\x8c\\x0fresources/input\\x94\\x8c\\x04data\\x94}\\x94(\\x8c\\x13common_translations\\x94]\\x94(\\x8c\\x0em\\xc3\\xa4nnlich=male\\x94\\x8c\\tMale=male\\x94\\x8c\\x0fweiblich=female\\x94\\x8c\\rFemale=female\\x94\\x8c\\x06ja=yes\\x94\\x8c\\x06Ja=yes\\x94\\x8c\\x07Yes=yes\\x94\\x8c\\x07nein=no\\x94\\x8c\\x07Nein=no\\x94\\x8c\\x05No=no\\x94\\x8c\\x03o=0\\x94\\x8c\\x03O=0\\x94\\x8c\\x08gut=good\\x94\\x8c\\x11mittel=acceptable\\x94\\x8c\\x10positiv=positive\\x94\\x8c\\x11Positive=positive\\x94\\x8c\\x10negativ=negative\\x94\\x8c\\x11Negative=negative\\x94\\x8c\\rschlecht=poor\\x94\\x8c\\tlang=long\\x94\\x8c\\nkurz=short\\x94\\x8c\\x19nicht bekannt=no evidence\\x94\\x8c\\x19Nicht bekannt=no evidence\\x94\\x8c\\x0cneg=negative\\x94\\x8c\\x0cpos=positive\\x94e\\x8c\\x0cvalid_ranges\\x94}\\x94(\\x8c\\x06height\\x94}\\x94(\\x8c\\x03max\\x94K\\xc8\\x8c\\x03min\\x94KKu\\x8c\\x06weight\\x94}\\x94(\\x8c\\x03max\\x94K\\x82\\x8c\\x03min\\x94K(u\\x8c\\x03age\\x94}\\x94(\\x8c\\x03max\\x94Kb\\x8c\\x03min\\x94K\\x02uuuu\\x8c\\x04rule\\x94\\x8c\\x14intermediate_dataset\\x94\\x8c\\x0fbench_iteration\\x94N\\x8c\\tscriptdir\\x94\\x8cc/mnt/f/Nextcloud/Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp/workflow/notebooks\\x94ub.'); from snakemake.logging import logger; logger.printshellcmds = False; import os; os.chdir(r'/mnt/f/Nextcloud/Workspaces/Linux/forschungsprojekt-iden/Teilprojekte/txreg-idpp');\n",
+    "######## snakemake preamble end #########\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "892536b2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2023-09-08T12:06:40.194937Z",
+     "iopub.status.busy": "2023-09-08T12:06:40.194706Z",
+     "iopub.status.idle": "2023-09-08T12:06:41.228557Z",
+     "shell.execute_reply": "2023-09-08T12:06:41.227479Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import sys\n",
+    "from pathlib import Path\n",
+    "import pandas as pd\n",
+    "import matplotlib_inline\n",
+    "\n",
+    "# from IPython.display import Markdown\n",
+    "import pandera as pa\n",
+    "from pandera.typing import Series\n",
+    "\n",
+    "matplotlib_inline.backend_inline.set_matplotlib_formats(\"svg\")\n",
+    "\n",
+    "\n",
+    "%matplotlib inline\n",
+    "\n",
+    "sys.path.append(str(Path(snakemake.input[\"util\"]).parent))\n",
+    "sys.path.append(str(Path(snakemake.input[\"display_util\"]).parent))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "6a5fe861",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2023-09-08T12:06:41.231105Z",
+     "iopub.status.busy": "2023-09-08T12:06:41.230768Z",
+     "iopub.status.idle": "2023-09-08T12:06:41.386450Z",
+     "shell.execute_reply": "2023-09-08T12:06:41.385554Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "from display_util import (  # noqa: E402\n",
+    "    rule_setup,\n",
+    "    rename,\n",
+    "    display_data_doc,\n",
+    ")\n",
+    "from util import (  # noqa: E402\n",
+    "    drop_col_few_distinct,\n",
+    "    TransplantationIDReference,\n",
+    "    drop_duplicate_columns,\n",
+    "    common_translate,\n",
+    ")"
+   ]
+  },
+  {
+   "attachments": {},
+   "cell_type": "markdown",
+   "id": "4564fb47",
+   "metadata": {},
+   "source": [
+    "# spender_postmortem_monitoring\n",
+    "\n",
+    "IAMEMPTY\n",
+    "\n",
+    "Data is provided by TODO: data descr in general{term}`ET` and {term}`IQTIG` in the file `element_spender_postmortem_monitoring.csv`. \n",
+    "\n",
+    "We perform the common steps outlined in [](../01_preprocessing/index.md). TODO: Summary of specialized steps\n",
+    "\n",
+    "## Unprocessed input data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "747ca353",
+   

@@ -1,0 +1,23 @@
+
+{
+ "name": "IDEN TxReg Preprocessing",
+ "dockerComposeFile": "docker-compose.yml",
+ "service": "devcontainer",
+ "workspaceFolder": "/txregidpp",
+ "postCreateCommand": "/opt/postCreate.sh",
+"customizations": {
+ "vscode": {
+  "extensions": [
+   "ms-azuretools.vscode-docker",
+   "ms-python.python",
+   "ms-toolsai.jupyter",
+   "mechatroner.rainbow-csv",
+   "snakemake.snakemake-lang"
+  ],
+  "settings": {
+    "remote.autoForwardPorts": false,
+    "application.shellEnvironmentResolutionTimeout": 60
+  }
+ }
+}
+}

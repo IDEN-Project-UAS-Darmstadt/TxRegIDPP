@@ -1,0 +1,22 @@
+name: main
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas>=2.0
+  - tqdm
+  - jupyter
+  - nbconvert
+  - seaborn
+  - pandera >= 0.15
+  - pandera-io
+  - pydantic
+  - pyarrow
+  - evidently
+  - frictionless <= 4.40.8 # see https://github.com/unionai-oss/pandera/blob/main/environment.yml#L19
+  - matplotlib-venn
+  - pip
+  - jupyter-book
+  - curl
+  - papermill

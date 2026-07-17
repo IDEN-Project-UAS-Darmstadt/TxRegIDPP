@@ -1,0 +1,20 @@
+name: snakemake
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python=3.11
+  - snakemake=9.23
+  - snakefmt=2.0.3
+  - just=1.56.0
+  - nbqa=1.9.0
+  - flake8=7.3.0
+  - isort=8.0.1
+  - tree
+  - snakedeploy=0.16.2
+  - nbconvert=7.17.1
+  - conda
+  - mamba
+  - dvc=3.67.1
+  - dvc-webdav
+  - markdownlint-cli

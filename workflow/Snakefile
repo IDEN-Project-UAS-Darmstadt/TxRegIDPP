@@ -1,0 +1,346 @@
+from snakemake.utils import min_version
+from os import environ
+import nbformat
+from nbformat.validator import normalize
+from nbformat.warnings import DuplicateCellId
+import warnings
+
+
+configfile: "config/config.yml"
+
+
+min_version("7.22")
+
+util = workflow.source_path("scripts/util.py")
+display_util = workflow.source_path("scripts/display_util.py")
+inputdir = config["input_data_dir"].rstrip("/")
+
+datanames = [
+    "empfaenger_dringlichkeit",
+    "empfaenger",
+    "empfaenger_immunologie",
+    "empfaenger_virologie",
+    "followup_niere",
+    "followup_niere_medikation",
+    "organ_entnahme_niere",
+    "spender_postmortem",
+    "spender_postmortem_diagnosen",
+    "spender_postmortem_labor_blutgase",
+    "spender_postmortem_labor_blutgruppe",
+    "spender_postmortem_labor_crossmatch",
+    "spender_postmortem_labor_hla",
+    "spender_postmortem_labor_klinische_chemie",
+    "spender_postmortem_labor_mikrobiologie",
+    "spender_postmortem_labor_pathologie",
+    "spender_postmortem_labor_toxikologie",
+    "spender_postmortem_labor_urin",
+    "spender_postmortem_labor_virologie",
+    "spender_postmortem_medikation",
+    "spender_postmortem_monitoring",
+    "spender_postmortem_untersuchungen",
+    "transplantation_postop_untersuchung",
+    "transplantation",
+    "warteliste_niere",
+]
+
+
+rule preparedoc:
+    input:
+        notebook="workflow/notebooks/0_doc.py.ipynb",
+        longnametable2022="resources/docdata/20211208_GFL_TxReg_BED_v2022.1_DSB.html",
+        longnametable2020="resources/docdata/20220120_TxReg_BED_v2020.1_DSB.html",
+        longnametablealtdaten=(
+            "resources/docdata/20190530_Tx-BED-Datensatzbeschreibung_v123.html"
+        ),
+        shortnametable=(
+            "resources/docdata/20210813_GFL_Tx_Servicedatei_Shortnames.xlsx"
+        ),
+    output:
+        "results/officialdoc.csv",
+    log:
+        notebook="results/reports/officialdoc.ipynb",
+    conda:
+        "envs/soup.yml"
+    message:
+        "Reading offical documentation..."
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {log.notebook} \
+            -p longnametable2020 {input.longnametable2020} \
+            -p longnametable2022 {input.longnametable2022} \
+            -p longnametablealtdaten {input.longnametablealtdaten} \
+            -p shortnametable {input.shortnametable} \
+            -p output {output} \
+            -k python3
+        """
+
+
+rule intermediate_dataset_before_filter:
+    input:
+        notebook="workflow/notebooks/1_before_{dataname}.py.ipynb",
+        data=inputdir + "/element_{dataname}.csv",
+        display_util=display_util,
+        util=util,
+        doc=rules.preparedoc.output[0],
+    output:
+        data="results/data/checkpoints/beforefilter_intermediate_{dataname}.pq",
+    log:
+        notebook="results/reports/checkpoints/1_beforefilter_{dataname}.ipynb",
+    conda:
+        "envs/main.yml"
+    threads: 4
+    message:
+        "Filtering intermediate dataset before processing..."
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {log.notebook} \
+            -p input_data {input.data} \
+            -p display_util {input.display_util} \
+            -p util {input.util} \
+            -p input_doc {input.doc} \
+            -p output_data {output.data} \
+            -k python3
+        """
+
+
+rule create_target_pop:
+    input:
+        notebook="workflow/notebooks/1_targetpop.py.ipynb",
+        data=expand(
+            rules.intermediate_dataset_before_filter.output.data, dataname=datanames
+        ),
+        display_util=display_util,
+        util=util,
+    output:
+        data="results/data/checkpoints/targetpop.pq",
+    log:
+        notebook="results/reports/1_targetpop.ipynb",
+    conda:
+        "envs/main.yml"
+    params:
+        datanames=datanames,
+    message:
+        "Processing input file..."
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {log.notebook} \
+            -p input_data "{input.data}" \
+            -p display_util {input.display_util} \
+            -p util {input.util} \
+            -p datanames "{params.datanames}" \
+            -p output_data {output.data} \
+            -k python3
+        """
+
+
+rule intermediate_dataset_after_filter:
+    input:
+        notebook="workflow/notebooks/1_after_{dataname}.py.ipynb",
+        data=rules.intermediate_dataset_before_filter.output.data,
+        targetpop=rules.create_target_pop.output.data,
+        display_util=display_util,
+        util=util,
+        configfile="config/config.yml",
+    output:
+        data="results/data/intermediate_{dataname}.pq",
+        model="results/data/intermediate_{dataname}.yml",
+    log:
+        notebook="results/reports/checkpoints/1_afterfilter_{dataname}.ipynb",
+    conda:
+        "envs/main.yml"
+    threads: 4
+    message:
+        "Processing intermediate dataset..."
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {log.notebook} \
+            -p configfile {input.configfile} \
+            -p input_data {input.data} \
+            -p targetpop_data {input.targetpop} \
+            -p display_util {input.display_util} \
+            -p util {input.util} \
+            -p output_data {output.data} \
+            -p output_model {output.model} \
+            -k python3
+        """
+
+
+rule combinebeforeafternotebook:
+    input:
+        before=rules.intermediate_dataset_before_filter.log.notebook,
+        after=rules.intermediate_dataset_after_filter.log.notebook,
+    output:
+        temp("results/reports/data/1_{dataname}.ipynb"),
+    threads: 1
+    message:
+        "Combining checkpoint notebooks..."
+    run:
+        nb1 = nbformat.read(input["before"], as_version=nbformat.NO_CONVERT)
+        nb2 = nbformat.read(input["after"], as_version=nbformat.NO_CONVERT)
+        nb1.cells.extend(nb2.cells)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=DuplicateCellId)
+            _, nb3 = normalize(nb1)
+        nbformat.write(nb3, output[0])
+
+
+rule intermediate:
+    input:
+        data=expand(
+            rules.intermediate_dataset_after_filter.output.data, dataname=datanames
+        ),
+
+
+rule consolidate:
+    input:
+        notebook="workflow/notebooks/2_consolidate.py.ipynb",
+        data=expand(
+            rules.intermediate_dataset_after_filter.output.data, dataname=datanames
+        ),
+        model=expand(
+            rules.intermediate_dataset_after_filter.output.model, dataname=datanames
+        ),
+        display_util=display_util,
+        util=util,
+        targetpop=rules.create_target_pop.output.data,
+    output:
+        data="results/data/flat_consolidated.pq",
+    log:
+        notebook="results/reports/2_consolidate.ipynb",
+    conda:
+        "envs/main.yml"
+    params:
+        datanames=datanames,
+    message:
+        "Consolidating..."
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {log.notebook} \
+            -p input_data "{input.data}" \
+            -p input_model "{input.model}" \
+            -p display_util {input.display_util} \
+            -p util {input.util} \
+            -p targetpop_data {input.targetpop} \
+            -p datanames "{params.datanames}" \
+            -p output_data {output.data} \
+            -k python3
+        """
+
+
+rule userfriendly:
+    input:
+        notebook="workflow/notebooks/2_userfriendly.py.ipynb",
+        consolidated=rules.consolidate.output.data,
+        display_util=display_util,
+        util=util,
+        columnproc="config/coltypes.csv",
+    output:
+        userfriendly="results/processed_data.pq",
+    log:
+        notebook="results/reports/2_userfriendly.ipynb",
+    conda:
+        "envs/main.yml"
+    params:
+        datanames=datanames,
+    message:
+        "Making a user friendly version..."
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {log.notebook} \
+            -p consolidated {input.consolidated} \
+            -p display_util {input.display_util} \
+            -p util {input.util} \
+            -p columnproc {input.columnproc} \
+            -p datanames "{params.datanames}" \
+            -p userfriendly {output.userfriendly} \
+            -k python3
+        """
+
+
+rule report:
+    input:
+        template="resources/book_template",
+        targetpop=rules.create_target_pop.log,
+        prep=expand(rules.combinebeforeafternotebook.output, dataname=datanames),
+        consolidate=rules.consolidate.log,
+        userfriendly=rules.userfriendly.log,
+    output:
+        directory("results/full_report"),
+    conda:
+        "envs/main.yml"
+    message:
+        "Wrote report to {output}!"
+    script:
+        "scripts/book.py"
+
+
+rule additional_analysis:
+    input:
+        raw_data=expand(
+            rules.intermediate_dataset_before_filter.input.data, dataname=datanames
+        ),
+        data=expand(
+            rules.intermediate_dataset_after_filter.output.data, dataname=datanames
+        ),
+        display_util=display_util,
+        util=util,
+        targetpop=rules.create_target_pop.output.data,
+        consolidated=rules.consolidate.output.data,
+        userfriendly=rules.userfriendly.output.userfriendly,
+    output:
+        out_dir=directory("results/additional"),
+    log:
+        notebook="results/3_additional.ipynb",
+    conda:
+        "envs/main.yml"
+    params:
+        datanames=datanames,
+    message:
+        "Doing additional analysis..."
+    notebook:
+        "notebooks/3_additional.py.ipynb"
+
+
+rule output_overview:
+    input:
+        notebook="workflow/notebooks/4_outputs.py.ipynb",
+        report=rules.report.output,
+        consolidated=rules.consolidate.output.data,
+        userfriendly=rules.userfriendly.output.userfriendly,
+    output:
+        notebook="outputs.ipynb",
+    conda:
+        "envs/main.yml"
+    message:
+        "Wrote overview to {output}!"
+    shell:
+        """
+        papermill \
+            {input.notebook} \
+            {output.notebook} \
+            -p report {input.report} \
+            -p consolidated {input.consolidated} \
+            -p userfriendly {input.userfriendly} \
+            -k python3
+        """
+
+
+rule install_kernel:
+    conda:
+        "envs/main.yml"
+    message:
+        "Installing kernel..."
+    shell:
+        'python -m ipykernel install --user --name txregidpp --display-name "Python (TxReg Vorverarbeitung)"'
