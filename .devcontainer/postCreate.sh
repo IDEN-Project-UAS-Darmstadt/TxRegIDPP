@@ -33,6 +33,8 @@ fix_directory_permissions /opt/conda pkgs
 mkdir -p  ~/snakemake_conda
 fix_directory_permissions ~/snakemake_conda
 
+conda config --append channels conda-forge
+conda config --append channels bioconda
 just env_prep
 just create install_kernel
 micromamba clean --all -y
