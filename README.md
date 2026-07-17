@@ -63,7 +63,7 @@ The project contains a DVC file, but this is only used internally.
 
 ## ⚙️ Prerequisites & Setup
 
-This project uses a Devcontainer, which automates the setup and installation of 
+This project uses a Devcontainer, which automates the setup and installation of
 all required dependencies.
 
 1. Install [Docker](https://www.docker.com/) and [VS Code](https://code.visualstudio.com/).
@@ -88,7 +88,7 @@ just create report
 # The "consolidation" and "userfriendly" step take some time
 ```
 
-3. **Retrieve Results:** * The final `.pq` (Parquet) dataset
+1. **Retrieve Results:** * The final `.pq` (Parquet) dataset
     will be available in `results/data/flat_consolidated.pq`.
 
 * A full HTML report documenting the entire run will be generated in `results/full_report/`.
@@ -136,4 +136,5 @@ file for details.
 sensitive medical data. No actual patient data or registry exports are
 included in this repository. Users must obtain their own legal access to the
 legacy kidney data from the
-[Deutsches Transplantationsregister](https://www.transplantations-register.de/) to utilize this pipeline.
+[Deutsches Transplantationsregister](https://www.transplantations-register.de/)
+to utilize this pipeline.
