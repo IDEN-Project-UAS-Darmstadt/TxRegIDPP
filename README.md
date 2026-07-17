@@ -138,3 +138,9 @@ included in this repository. Users must obtain their own legal access to the
 legacy kidney data from the
 [Deutsches Transplantationsregister](https://www.transplantations-register.de/)
 to utilize this pipeline.
+
+**Documentation Archive Note:** The files located in the `resources/docdata/` 
+directory are official documentation mirrored for archival purposes from the 
+transplantation registry website. The MIT License of this repository does **not** 
+apply to these files; they remain the intellectual property of their original 
+publishers and respective copyright holders.
