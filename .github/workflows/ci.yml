@@ -21,5 +21,5 @@ jobs:
           generate-run-shell: true
 
       - name: Lint
-        run: make just lint
+        run: just lint
         shell: micromamba-shell {0}
