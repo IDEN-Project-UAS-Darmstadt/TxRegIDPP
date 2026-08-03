@@ -144,3 +144,13 @@ directory are official documentation mirrored for archival purposes from the
 transplantation registry website. The MIT License of this repository does **not**
 apply to these files; they remain the intellectual property of their original
 publishers and respective copyright holders.
+
+## 💰 Funding & Acknowledgements
+
+This research project was funded by the Federal Ministry of Research,
+Technology and Space (*Bundesministerium für Forschung, Technologie und
+Raumfahrt*, BMFTR) under project grant **13FH019KX1** and the German
+federal state of Hesse. 
+
+Further details regarding the project can be found on the
+[FORSCHUNG.HAW project page](https://www.forschung-haw.de/fachhochschulen/shareddocs/projekte/de/fh-kooperativ/iden.html).
