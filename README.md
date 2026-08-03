@@ -150,7 +150,7 @@ publishers and respective copyright holders.
 This research project was funded by the Federal Ministry of Research,
 Technology and Space (*Bundesministerium für Forschung, Technologie und
 Raumfahrt*, BMFTR) under project grant **13FH019KX1** and the German
-federal state of Hesse. 
+federal state of Hesse.
 
 Further details regarding the project can be found on the
 [FORSCHUNG.HAW project page](https://www.forschung-haw.de/fachhochschulen/shareddocs/projekte/de/fh-kooperativ/iden.html).
