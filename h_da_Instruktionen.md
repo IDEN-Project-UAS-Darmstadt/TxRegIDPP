@@ -29,7 +29,32 @@ PATH_TO_DVC_REPO="/mnt/d/h_da\ Nextcloud/FBI\ Forschungsprojekt\ IDEN/DVC_Repo/"
 # -d make default remote, otherwise: dvc pull -r local_remote
 # --local write to a git ignored file, so that it stays private
 dvc remote add -d local_remote --local "$PATH_TO_DVC_REPO"
+```
 
+## DVC Nextcloud Share
+
+Zuerst sollte für den Ordner `DVC_Repo` ein Share Link mit einem Passwort
+erstellt werden. Das Ablaufdatum sollte weit genug in der Zukunft liegen.
+Es muss auch ein Passwort gesetzt werden und die Berechtigungen müssen auf
+"Hochladen und Bearbeiten erlauben" gesetzt werden.
+
+Man sollte jetzt folgendes haben:
+
+```text
+Link: https://cloud.h-da.de/s/zPfHbGGTx7A7MgB
+Password: 78HJDWUB435345
+```
+
+Der Teil nach `/s/` ist die Share ID, die man als Benutzernamen nutzt für
+den Zugriff über WebDAV (Erfordert `dvc-webdav`).
+
+```bash
+DVC_SHARE_ID="zPfHbGGTx7A7MgB"
+# -d make default remote, otherwise: dvc pull -r cloud_remote
+# --local write to a git ignored file, so that it stays private
+dvc remote add cloud_remote --local "https://cloud.h-da.de/remote.php/webdav/"
+dvc remote modify cloud_remote --local user "$DVC_SHARE_ID"
+ dvc remote modify cloud_remote --local password "78HJDWUB435345"
 ```
 
 ## DVC Nutzung
@@ -44,4 +69,11 @@ dvc status
 
 # Old versions can be found by rolling back the results.dvc file with git
 # and then running dvc checkout again.
+
+# Add a new version
+dvc add results
+git add results.dvc # and every other file that changed
+git commit -m "Changes here."
+dvc push # Pushes the new version to the remote
+git push # Pushes the new version of results.dvc to the remote
 ```
