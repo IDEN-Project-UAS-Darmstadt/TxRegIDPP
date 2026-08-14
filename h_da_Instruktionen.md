@@ -30,10 +30,18 @@ PATH_TO_DVC_REPO="/mnt/d/h_da\ Nextcloud/FBI\ Forschungsprojekt\ IDEN/DVC_Repo/"
 # --local write to a git ignored file, so that it stays private
 dvc remote add -d local_remote --local "$PATH_TO_DVC_REPO"
 
+```
+
+## DVC Nutzung
+
+```bash
 # Restore the last results from the DVC remote (uses results.dvc reference)
 dvc pull
 dvc checkout
 
+# See current status of the DVC tracked files
+dvc status
+
 # Old versions can be found by rolling back the results.dvc file with git
-# and then running dvc pull again.
+# and then running dvc checkout again.
 ```

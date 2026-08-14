@@ -97,6 +97,10 @@ just create report
     `.snakemake` directory often resolves them. To clean all generated outputs,
     run `just clean`.
 
+If there are errors with the pandas code, the environement may be out of sync.
+Delete everything in `~/snakemake_conda/` and re-run `just env_prep` 
+and `just create install_kernel` to rebuild the environment.
+
 ## 📝 Outputs
 
 See the [outputs](outputs.ipynb) notebook for more details on the generated
