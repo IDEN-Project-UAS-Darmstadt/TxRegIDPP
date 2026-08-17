@@ -344,3 +344,34 @@ rule install_kernel:
         "Installing kernel..."
     shell:
         'python -m ipykernel install --user --name txregidpp --display-name "Python (TxReg Vorverarbeitung)"'
+
+rule main_env_setup:
+    conda:
+        "envs/main.yml"
+    message:
+        "Setting up main environment..."
+    output:
+        temp("results/main_env_setup_done.flag")
+    shell:
+        "echo 'Main environment setup completed.' > {output}"
+
+rule soup_env_setup:
+    conda:
+        "envs/soup.yml"
+    message:
+        "Setting up soup environment..."
+    output:
+        temp("results/soup_env_setup_done.flag")
+    shell:
+        "echo 'Soup environment setup completed.' > {output}"
+
+rule env_setup:
+    input:
+        main_env=rules.main_env_setup.output,
+        soup_env=rules.soup_env_setup.output,
+    message:
+        "Setting up environments..."
+    output:
+        temp("results/env_setup_done.flag")
+    shell:
+        "echo 'Environment setup completed.' > {output}"

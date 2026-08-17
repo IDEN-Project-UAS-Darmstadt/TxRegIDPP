@@ -48,7 +48,7 @@ pythons := "workflow/scripts/*.py"
 
 # Create environments necessary to run the workflow in Snakemake
 @env_prep:
-  snakemake --use-conda --cores 'all' 'report' --conda-create-envs-only
+  snakemake --use-conda --cores 'all' 'env_setup' --conda-create-envs-only
 
 # Edit a specific notebook (give the path to the result)
 @edit notebook:
