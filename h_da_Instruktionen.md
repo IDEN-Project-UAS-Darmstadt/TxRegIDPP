@@ -16,7 +16,7 @@ das DVC remote Repository konfiguriert werden. Dies erfolgt enweder
 über einen lokalen Ordner, der mit der Nextcloud synchronisiert wird,
 oder direkt über eine Nextcloud Share mit einem Passwort.
 
-## DVC Lokaler Ordner
+## DVC Lokaler Ordner (empfohlen)
 
 Hierfür wird lokaler Pfad zum DVC Repo benötigt. Bei mir z. B.:
 `/mnt/d/h_da\ Nextcloud/FBI\ Forschungsprojekt\ IDEN/DVC_Repo/`.
@@ -31,6 +31,14 @@ PATH_TO_DVC_REPO="/mnt/d/h_da\ Nextcloud/FBI\ Forschungsprojekt\ IDEN/DVC_Repo/"
 dvc remote add -d local_remote --local "$PATH_TO_DVC_REPO"
 ```
 
+Es gibt schnell Probleme, wenn man Leerzeichen im Pfad hat. In der
+`.dvc/config.local` sollte der Pfad in einfachen Anführungszeichen stehen,
+aber ohne Escape-Zeichen z. B.:
+
+```text
+['remote "local_remote"']
+    url = '/mnt/d/h_da Nextcloud/FBI Forschungsprojekt IDEN/DVC_Repo/'
+```
 ## DVC Nextcloud Share
 
 Zuerst sollte für den Ordner `DVC_Repo` ein Share Link mit einem Passwort
@@ -52,10 +60,12 @@ den Zugriff über WebDAV (Erfordert `dvc-webdav`).
 DVC_SHARE_ID="zPfHbGGTx7A7MgB"
 # -d make default remote, otherwise: dvc pull -r cloud_remote
 # --local write to a git ignored file, so that it stays private
-dvc remote add cloud_remote --local "https://cloud.h-da.de/remote.php/webdav/"
+dvc remote add cloud_remote --local "webdavs://cloud.h-da.de/public.php/webdav/"
 dvc remote modify cloud_remote --local user "$DVC_SHARE_ID"
- dvc remote modify cloud_remote --local password "78HJDWUB435345"
+dvc remote modify cloud_remote --local password "78HJDWUB435345"
 ```
+
+Dies funktioniert oft nicht mit Ordner Ergebnissen und scheint instabil zu sein.
 
 ## DVC Nutzung
 
