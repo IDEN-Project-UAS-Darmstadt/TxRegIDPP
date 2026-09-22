@@ -2,6 +2,10 @@ outs:
 - hash: md5
   path: results
   files:
+  - relpath: 3_followup.ipynb
+    md5: 65dc4d985d0f096eaab64cbec2f578d3
+    size: 53121
+    isexec: true
   - relpath: data/checkpoints/beforefilter_intermediate_empfaenger.pq
     md5: 965c9c826922c380177732b7a60b6e66
   - relpath: 
@@ -184,6 +188,22 @@ outs:
     md5: 1bba3ae932821fe64d3e30ff986d4ed0
   - relpath: data/intermediate_warteliste_niere.yml
     md5: 119d6092403fb64b1e9b28d43e15083b
+  - relpath: followup_analysis/3_followup.ipynb
+    md5: 75e2531ba73a99dfcf066b76280232b4
+    size: 416288
+    isexec: true
+  - relpath: followup_analysis/long_followup_et.csv
+    md5: 284da3a38fdb119f428128872665d44a
+    size: 729024
+    isexec: true
+  - relpath: followup_analysis/long_followup_iqtig.csv
+    md5: d86048d52a8eef4dfc039348ad73573c
+    size: 2200804
+    isexec: true
+  - relpath: followup_analysis/wide_followup.csv
+    md5: 9b2ebec7bdb8ed9531eabe46a747a82e
+    size: 1171798
+    isexec: true
   - relpath: full_report/.snakemake_timestamp
     md5: d41d8cd98f00b204e9800998ecf8427e
   - relpath: full_report/html/.buildinfo
@@ -1195,8 +1215,8 @@ outs:
     size: 10745758
     isexec: true
   - relpath: reports/1_targetpop.ipynb
-    md5: 191785347e50ddeab602ba3f1f200f29
-    size: 482299
+    md5: bf880cb46dcbbeccf4f5da08c80544bc
+    size: 482297
     isexec: true
   - relpath: reports/2_consolidate.ipynb
     md5: f2f25c623114d534ee07b9ca69ff57a2
@@ -1207,8 +1227,8 @@ outs:
     size: 35904
     isexec: true
   - relpath: reports/checkpoints/1_afterfilter_empfaenger.ipynb
-    md5: bddcd43be40a3e451d1a65e52e9cd1ea
-    size: 265225
+    md5: 24f8776b66b1bf2cc65e254b648121d7
+    size: 265220
     isexec: true
   - relpath: reports/checkpoints/1_afterfilter_empfaenger_dringlichkeit.ipynb
     md5: 19885167da4d979a92b92af13944e149
@@ -1309,8 +1329,8 @@ outs:
     size: 191144
     isexec: true
   - relpath: reports/checkpoints/1_afterfilter_transplantation.ipynb
-    md5: 542b2dd5c486ebb822c23e4190dfc6d3
-    size: 229823
+    md5: 217bb9678bdb99971396b922755afd21
+    size: 229828
     isexec: true
   - relpath: 
       reports/checkpoints/1_afterfilter_transplantation_postop_untersuchung.ipynb
@@ -1322,121 +1342,121 @@ outs:
     size: 293987
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_empfaenger.ipynb
-    md5: 8ded47a8ef18709e7250308066ee1335
+    md5: 4d9556c70dae4b371b4f8ebefe8d5895
     size: 72887
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_empfaenger_dringlichkeit.ipynb
-    md5: 4d2a8aa50562b143be8870e4d6f69a0b
-    size: 62524
+    md5: 04acd6a4278ef7574172e825be5b38ae
+    size: 62522
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_empfaenger_immunologie.ipynb
-    md5: 6ad3077a7280fe57998b9ffd0b29621f
+    md5: 6f014296775dc341791d59ba79caf202
     size: 59902
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_empfaenger_virologie.ipynb
-    md5: 9f38b37af84b447b183407a7b15a3734
-    size: 42546
+    md5: 40342b77a39e2851b3b193ef456ba7c4
+    size: 42550
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_followup_niere.ipynb
-    md5: 0fe2c6e6fb7583ca0c31bf33e7b38116
+    md5: 1ef27f3fe53508be18b2feaa346227fd
     size: 212357
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_followup_niere_medikation.ipynb
-    md5: e8baeb6a40ff4a9cb66e6e2dbf8ff4af
+    md5: 7b3691cc5342332051ca1d56621bf294
     size: 42286
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_organ_entnahme_niere.ipynb
-    md5: 4e4e1ce6166cbf5296086c33a3a509a6
+    md5: 886bd40830886701c4efd7f261c2b72d
     size: 201253
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_spender_postmortem.ipynb
-    md5: 620c4749ce7f01d419c55b8ce2cead55
-    size: 374892
+    md5: cdcd9236fb35bd00993e79bc9c677253
+    size: 374891
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_diagnosen.ipynb
-    md5: fd34a171528bd00833f53d5fcb58205e
+    md5: e36a4f6586c448a82ffcfb533d299556
     size: 87957
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_blutgase.ipynb
-    md5: 19da9f17cae9bf04d70bd82830345977
-    size: 111852
+    md5: c1068dcbcb6b60f36408f94f777ed948
+    size: 111853
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_blutgruppe.ipynb
-    md5: bb7e3b91f24972c55952d6db771d3ffb
-    size: 42294
+    md5: 9cb556b1e8bec69ee657b84b5cf719f1
+    size: 42293
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_crossmatch.ipynb
-    md5: fba2fa5f5b10fce37449712147037b18
-    size: 71555
+    md5: 5b06aff06837d967f3df26bb4b2bb6ea
+    size: 71553
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_hla.ipynb
-    md5: 084cc9318da3f81503e09f6aa588e750
-    size: 114522
+    md5: 6a6aec9464697b01b08b9c5823fa5a25
+    size: 114523
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_klinische_chemie.ipynb
-    md5: 796fdf7ecd4de5df19887c899d337b2e
-    size: 274327
+    md5: 1040b036fa52fe2f6faff6a028413aeb
+    size: 274330
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_mikrobiologie.ipynb
-    md5: 79b1ad521f666349608624453983f004
-    size: 68476
+    md5: 6051b15a1e7475de0020419d46f0fc93
+    size: 68477
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_pathologie.ipynb
-    md5: 0a2272d0b732c8008d618686a73c03dc
-    size: 52802
+    md5: 1c124733a0adf790e6bd8abfa792f26b
+    size: 52801
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_toxikologie.ipynb
-    md5: 44ae99c02d02191b4a51c8feee617f10
-    size: 45040
+    md5: b06948ca7aa528faa21fe35a43e6af69
+    size: 45044
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_urin.ipynb
-    md5: a7a1b1b17e330193b2a5805ccd4b7db6
-    size: 54958
+    md5: a6c2185856c6192db1980a0d61e0b863
+    size: 54962
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_labor_virologie.ipynb
-    md5: e649f7e85c47338ba92b65fede844bd4
+    md5: c514e550efcf8f7719d2266c3c2a6565
     size: 87411
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_medikation.ipynb
-    md5: 877eb0cdd89c2b06a1cf2f328e8705e6
-    size: 83049
+    md5: 578d2485e72c7d22b19086c0da7d3774
+    size: 83048
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_monitoring.ipynb
-    md5: 8ddb51fdc1f9935b068889fcd1948303
-    size: 138440
+    md5: 52fb5d2992f46a3a29bbc227af215cfa
+    size: 138439
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_spender_postmortem_untersuchungen.ipynb
-    md5: 01f19624509cf43ffd7129c20bee58ce
-    size: 42288
+    md5: 6385a1348d220e8396ee0267845f7f00
+    size: 42291
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_transplantation.ipynb
-    md5: 3a9c1d6ab89f0e6869d2ae86eb74619d
-    size: 387391
+    md5: 83a7624802d7161d694869c8f73d074f
+    size: 387390
     isexec: true
   - relpath: 
       reports/checkpoints/1_beforefilter_transplantation_postop_untersuchung.ipynb
-    md5: 89e4bdf704d17585a22d799d879b45c5
-    size: 33714
+    md5: be8739c516a7a9e423e948a7597b98a5
+    size: 33713
     isexec: true
   - relpath: reports/checkpoints/1_beforefilter_warteliste_niere.ipynb
-    md5: 9409a87cbc6e8b0bb94c594df4c802c8
-    size: 463961
+    md5: 80041ce453fdd07869fdeb308a9dc248
+    size: 463964
     isexec: true
   - relpath: reports/officialdoc.ipynb
-    md5: 29a07213b43dd6aa868ed39da65df853
+    md5: 2fbab026a21be6326ccc67519398fb74
     size: 67067
     isexec: true

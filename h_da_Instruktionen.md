@@ -39,6 +39,7 @@ aber ohne Escape-Zeichen z. B.:
 ['remote "local_remote"']
     url = '/mnt/d/h_da Nextcloud/FBI Forschungsprojekt IDEN/DVC_Repo/'
 ```
+
 ## DVC Nextcloud Share
 
 Zuerst sollte für den Ordner `DVC_Repo` ein Share Link mit einem Passwort

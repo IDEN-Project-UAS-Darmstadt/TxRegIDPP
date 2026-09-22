@@ -44,11 +44,11 @@ pythons := "workflow/scripts/*.py"
 
 # Produce the specified file
 @create outputfile:
-  snakemake --use-conda --rerun-incomplete --keep-going --cores 'all' {{outputfile}}
+  snakemake --use-conda --rerun-incomplete --keep-going --cores 'all'  --persistence-backend db {{outputfile}}
 
 # Create environments necessary to run the workflow in Snakemake
 @env_prep:
-  snakemake --use-conda --cores 'all' 'env_setup' --conda-create-envs-only
+  snakemake --use-conda --cores 'all' 'env_setup' --persistence-backend db --conda-create-envs-only
 
 # Edit a specific notebook (give the path to the result)
 @edit notebook:
@@ -60,4 +60,4 @@ pythons := "workflow/scripts/*.py"
 
 # Edit a specific notebook, using the snakemake notebook directive (only used for the additional analysis notebooks, not the main workflow notebooks)
 @edit_nb outputfile:
-  snakemake --use-conda --cores 1 --edit-notebook {{outputfile}}
+  snakemake --use-conda --cores 1 --persistence-backend db --edit-notebook {{outputfile}}

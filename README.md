@@ -106,6 +106,10 @@ and `just create install_kernel` to rebuild the environment.
 See the [outputs](outputs.ipynb) notebook for more details on the generated
 files and their structure.
 
+There are two undocumented outputs, as they were internal. One are the
+analysis for the initial data analysis paper and the creation of a
+follow-up dataset (`just create followup_analysis`).
+
 ## 👨‍💻 Development
 
 We use `just` as a command runner to simplify development tasks.

@@ -313,6 +313,37 @@ rule additional_analysis:
         "notebooks/3_additional.py.ipynb"
 
 
+rule followup_analysis:
+    input:
+        before_filter_followup=expand(
+            rules.intermediate_dataset_before_filter.output.data,
+            dataname=["followup_niere"],
+        )[0],
+        after_filter_transplantation=expand(
+            rules.intermediate_dataset_after_filter.output.data,
+            dataname=["transplantation"],
+        )[0],
+        after_filter_recipients=expand(
+            rules.intermediate_dataset_after_filter.output.data,
+            dataname=["empfaenger"],
+        )[0],
+        display_util=display_util,
+        util=util,
+        targetpop=rules.create_target_pop.output.data,
+    output:
+        out_long_et="results/followup_analysis/long_followup_et.csv",
+        out_wide="results/followup_analysis/wide_followup.csv",
+        out_long_iqtig="results/followup_analysis/long_followup_iqtig.csv",
+    log:
+        notebook="results/followup_analysis/3_followup.ipynb",
+    conda:
+        "envs/main.yml"
+    message:
+        "Doing follow-up analysis..."
+    notebook:
+        "notebooks/3_followup.py.ipynb"
+
+
 rule output_overview:
     input:
         notebook="workflow/notebooks/4_outputs.py.ipynb",
@@ -345,33 +376,44 @@ rule install_kernel:
     shell:
         'python -m ipykernel install --user --name txregidpp --display-name "Python (TxReg Vorverarbeitung)"'
 
+
 rule main_env_setup:
+    output:
+        temp("results/main_env_setup_done.flag"),
     conda:
         "envs/main.yml"
     message:
         "Setting up main environment..."
-    output:
-        temp("results/main_env_setup_done.flag")
     shell:
         "echo 'Main environment setup completed.' > {output}"
 
+
 rule soup_env_setup:
+    output:
+        temp("results/soup_env_setup_done.flag"),
     conda:
         "envs/soup.yml"
     message:
         "Setting up soup environment..."
-    output:
-        temp("results/soup_env_setup_done.flag")
     shell:
         "echo 'Soup environment setup completed.' > {output}"
+
+
+rule all:
+    input:
+        rules.report.output,
+        rules.followup_analysis.output.out_long_et,
+    message:
+        "Requesting everything, this will take a while..."
+
 
 rule env_setup:
     input:
         main_env=rules.main_env_setup.output,
         soup_env=rules.soup_env_setup.output,
+    output:
+        temp("results/env_setup_done.flag"),
     message:
         "Setting up environments..."
-    output:
-        temp("results/env_setup_done.flag")
     shell:
         "echo 'Environment setup completed.' > {output}"
